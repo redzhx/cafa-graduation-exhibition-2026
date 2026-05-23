@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>央美本科毕业展 2026 · 小红书热门作品汇总</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    line-height: 1.6;
+  }
+  .header {
+    background: linear-gradient(135deg, #ff2442 0%, #ff6b81 50%, #ff4757 100%);
+    color: #fff;
+    padding: 48px 24px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+  .header h1 { font-size: 26px; font-weight: 900; position: relative; letter-spacing: 2px; }
+  .header .subtitle { font-size: 14px; opacity: 0.85; margin-top: 6px; position: relative; }
+  .header .date-badge {
+    display: inline-block; background: rgba(255,255,255,0.2);
+    border-radius: 20px; padding: 4px 16px; font-size: 13px; margin-top: 10px; position: relative;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 16px; }
+  .sticky-nav {
+    position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee;
+    padding: 8px 16px; z-index: 100; display: flex; gap: 8px; overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sticky-nav a {
+    flex-shrink: 0; padding: 6px 14px; border-radius: 8px; font-size: 13px;
+    text-decoration: none; color: #666; background: #f5f5f5; white-space: nowrap;
+  }
+  .sticky-nav a:hover { background: #ff2442; color: #fff; }
+  .search-bar {
+    background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .search-bar .label { font-size: 13px; color: #666; width: 100%; margin-bottom: 4px; }
+  .search-btn {
+    display: inline-flex; align-items: center; gap: 4px; padding: 8px 16px; border-radius: 8px;
+    font-size: 13px; text-decoration: none; background: #ff2442; color: #fff; font-weight: 500;
+  }
+  .search-btn.secondary { background: #f0f0f0; color: #333; }
+  .section-title {
+    font-size: 18px; font-weight: 700; margin: 24px 0 12px; padding-left: 12px;
+    border-left: 4px solid #ff2442; display: flex; align-items: center; gap: 8px;
+  }
+  .section-title .badge {
+    background: #ff2442; color: #fff; font-size: 11px; border-radius: 10px; padding: 1px 8px;
+  }
+  .info-card {
+    background: linear-gradient(135deg, #fff5f7, #fff0f3); border-radius: 12px; padding: 16px;
+    margin-bottom: 16px; border: 1px solid #ffe0e5;
+  }
+  .info-card h3 { font-size: 15px; margin-bottom: 8px; color: #ff2442; }
+  .info-card table { width: 100%; font-size: 13px; border-collapse: collapse; }
+  .info-card td { padding: 3px 8px; vertical-align: top; }
+  .info-card td:first-child { color: #999; white-space: nowrap; width: 72px; }
+
+  .work-card {
+    background: #fff; border-radius: 14px; margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06); overflow: hidden;
+  }
+  .work-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .work-banner {
+    padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+  }
+  .work-rank {
+    width: 32px; height: 32px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; flex-shrink: 0;
+  }
+  .tier-1 .work-rank { background: #ff2442; color: #fff; }
+  .tier-1 .work-banner { background: linear-gradient(135deg, #fff0f3, #ffe0e5); }
+  .tier-2 .work-rank { background: #ff6b35; color: #fff; }
+  .tier-2 .work-banner { background: linear-gradient(135deg, #fff5f0, #ffe8e0); }
+  .tier-3 .work-rank { background: #ffa940; color: #fff; }
+  .tier-3 .work-banner { background: #fffaf0; }
+
+  .work-title-area { flex: 1; min-width: 0; }
+  .work-name {
+    font-size: 16px; font-weight: 700; color: #222;
+  }
+  .work-name .author { font-weight: 500; color: #666; font-size: 14px; }
+  .work-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+  .tag { font-size: 11px; padding: 1px 8px; border-radius: 4px; }
+  .tag-red { background: #fff0f0; color: #ff2442; }
+  .tag-orange { background: #fff5f0; color: #ff6b35; }
+  .tag-blue { background: #f0f5ff; color: #2f54eb; }
+  .tag-green { background: #f0fff5; color: #389e0d; }
+  .work-heat {
+    text-align: right; flex-shrink: 0; font-size: 13px; color: #ff2442; font-weight: 600;
+  }
+  .work-body { padding: 0 18px 16px; font-size: 14px; color: #444; }
+  .work-body p { margin: 6px 0; }
+  .work-body .section-label {
+    display: inline-block; font-size: 12px; font-weight: 600; color: #ff2442; margin-top: 8px;
+  }
+  .work-body .quote {
+    background: #f8f8f8; border-left: 3px solid #ff2442; padding: 8px 12px; margin: 6px 0;
+    border-radius: 0 6px 6px 0; font-size: 13px; color: #555;
+  }
+  .work-img {
+    width: 100%; border-radius: 10px; margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: block;
+  }
+  .work-posts { padding: 0 18px 14px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .work-post-link {
+    display: inline-flex; align-items: center; gap: 3px;
+    padding: 4px 10px; border-radius: 6px; font-size: 12px; text-decoration: none;
+    background: #fff5f7; color: #ff2442; border: 1px solid #ffe0e5;
+  }
+  .work-post-link:hover { background: #ff2442; color: #fff; border-color: #ff2442; }
+
+  .post-list { display: flex; flex-direction: column; gap: 10px; }
+  .post-item {
+    background: #fff; border-radius: 10px; padding: 12px 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05); display: flex; gap: 10px; align-items: flex-start;
+  }
+  .post-item .thumb {
+    width: 70px; height: 70px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
+    background: #f0f0f0;
+  }
+  .post-num {
+    flex-shrink: 0; width: 24px; height: 24px; border-radius: 6px;
+    background: #f0f0f0; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; color: #bbb;
+  }
+  .post-num.top3 { background: #ff2442; color: #fff; }
+  .post-info { flex: 1; min-width: 0; }
+  .post-info .title {
+    font-size: 14px; font-weight: 600; color: #222; text-decoration: none; display: block;
+  }
+  .post-info .title:hover { color: #ff2442; }
+  .post-info .meta {
+    display: flex; gap: 10px; font-size: 12px; color: #999; margin-top: 3px; flex-wrap: wrap;
+  }
+  .post-info .meta .author { color: #666; }
+  .post-info .meta .likes { color: #ff2442; font-weight: 600; }
+  .post-info .desc { font-size: 13px; color: #888; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .post-info .jump {
+    display: inline-block; margin-top: 4px; font-size: 12px; color: #ff2442;
+    text-decoration: none; padding: 2px 8px; border-radius: 4px;
+    background: #fff5f7; border: 1px solid #ffe0e5;
+  }
+  .post-info .jump:hover { background: #ff2442; color: #fff; }
+
+  .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 8px 0; }
+  .stat-item {
+    background: #fff; border-radius: 10px; padding: 12px 16px; flex: 1; min-width: 120px;
+    text-align: center; box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .stat-item .num { font-size: 22px; font-weight: 700; color: #ff2442; }
+  .stat-item .label { font-size: 12px; color: #999; margin-top: 2px; }
+  .update-bar {
+    background: #fffbe6; border: 1px solid #ffe58f; border-radius: 8px;
+    padding: 8px 14px; font-size: 13px; color: #ad6800; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .trend-up { color: #ff2442; font-weight: 600; }
+
+  .footer {
+    text-align: center; padding: 32px 16px; font-size: 12px; color: #ccc;
+  }
+  .footer a { color: #999; text-decoration: none; }
+  
+  .photo-wall-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin: 12px 0 20px; }
+  .photo-wall-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 3/4; background: #f0f0f0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+  .photo-wall-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .photo-wall-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-wall-item .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 10px 10px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; font-size: 12px; line-height: 1.4; }
+  .photo-wall-item .overlay .pw-title { font-weight: 600; font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .photo-wall-item .overlay .pw-meta { display: flex; gap: 8px; margin-top: 3px; opacity: 0.85; font-size: 11px; }
+  .photo-wall-item .overlay .pw-likes { color: #ff4757; font-weight: 600; }
+  .photo-wall-empty { grid-column: 1/-1; text-align: center; padding: 40px; color: #ccc; font-size: 14px; background: #fafafa; border-radius: 12px; }
+  @media (max-width: 600px) { .photo-wall-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+
+@media (max-width: 600px) {
+    .header { padding: 32px 16px 24px; }
+    .header h1 { font-size: 20px; }
+    .work-banner { flex-wrap: wrap; }
+    .stat-row { gap: 8px; }
+    .post-item .thumb { width: 60px; height: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>央美毕业展 2026</h1>
+  <div class="subtitle">小红书热门作品解读 · 本科展（一）专版</div>
+  <div class="date-badge">更新于 2026.05.23 · 本科展（一）5.20-6.3 第4天</div>
+</div>
+
+<div class="sticky-nav">
+  <a href="#info">展览信息</a>
+  <a href="#works">作品解读</a>
+  <a href="#photowall">照片墙</a>
+  <a href="#posts">全部帖子</a>
+  <a href="#guide">攻略</a>
+</div>
+
+<div class="container">
+
+  <div class="search-bar">
+    <div class="label">在小红书搜索更多</div>
+    <a class="search-btn" href="https://www.xiaohongshu.com/search_result?keyword=央美本科毕业展2026&type=51" target="_blank">央美本科毕业展2026</a>
+    <a class="search-btn secondary" href="https://www.xiaohongshu.com/search_result?keyword=焕彩共生央美&type=51" target="_blank">焕彩共生</a>
+    <a class="search-btn secondary" href="https://www.xiaohongshu.com/search_result?keyword=央美毕业展攻略2026&type=51" target="_blank">攻略</a>
+  </div>
+
+  <!-- 展览信息 -->
+  <div class="section-title" id="info">展览信息</div>
+  <div class="info-card">
+    <h3>「焕彩共生」中央美术学院 2026 毕业季</h3>
+    <table>
+      <tr><td>本科展（一）</td><td><strong>2026.05.20 — 06.03</strong> 第4天</td></tr>
+      <tr><td>本科展（二）</td><td>2026.06.08 — 06.22</td></tr>
+      <tr><td>研究生展</td><td>2026.04.30 — 05.14（已结束）</td></tr>
+      <tr><td>地点</td><td>中央美术学院美术馆 · 花家地新馆</td></tr>
+      <tr><td>门票</td><td>普通票 30元 / 学生票 20元 / 校友票 15元</td></tr>
+      <tr><td>预约</td><td>微信小程序「中央美术学院美术馆」· 提前7天</td></tr>
+      <tr><td>时间</td><td>09:30 — 17:30（17:00 停止入场）· 周一正常开放</td></tr>
+    </table>
+  </div>
+
+  <!-- 热度统计 -->
+  <div class="section-title">热度趋势</div>
+  <div class="stat-row">
+    <div class="stat-item"><div class="num" id="total-posts">0</div><div class="label">收录帖子</div></div>
+    <div class="stat-item"><div class="num" id="total-likes">0</div><div class="label">累计点赞</div></div>
+    <div class="stat-item"><div class="num" id="avg-likes">0</div><div class="label">平均点赞</div></div>
+    <div class="stat-item"><div class="num" id="hot-post">-</div><div class="label">最高赞帖子</div></div>
+  </div>
+
+  <div class="update-bar">小红书实时数据 5月23日 · 热度持续攀升 · 晚晚夫妇观展引热议（355赞）· 新京报+实验艺术学院等多源收录 · 作品<span style="font-weight:700">23+</span>件 · 照片墙<span style="font-weight:700">13+</span>张 · 帖子<span style="font-weight:700">80+</span>篇</div>
+
+  <!-- 作品解读 -->
+  <div class="section-title" id="works">作品解读 <span class="badge">本科展（一）· 持续更新</span></div>
+
+  <!-- TIER 1 -->
+  <div class="work-card tier-1">
+    <div class="work-banner">
+      <div class="work-rank">T1</div>
+      <div class="work-title-area">
+        <div class="work-name">《否定再否定：土地的挽留》+《年轻人，你去哪？》 <span class="author">吴嘉丽</span></div>
+        <div class="work-tags">
+          <span class="tag tag-green">岩彩</span>
+          <span class="tag tag-blue">AI互动</span>
+          <span class="tag tag-red">官方报道</span>
+        </div>
+      </div>
+      <div class="work-heat">话题 TOP 1</div>
+    </div>
+    <div class="work-body">
+      <p>皮纸裱于木板 · 岩彩矿物色、墨、彩铅 · 160×300cm · CAFA"焕彩"系列报道</p>
+      <div class="section-label">作品解读</div>
+      <p>以家乡江西万年的稻田为核心意象，画面下方是蓬勃向上的水稻，上方是翱翔的飞鸟，体现故土"无声的挽留"与年轻人"奔赴远方的渴望"之间的情感对抗。借鉴沧源崖画的古朴形式，融入锦灰堆（八破图）手法刻画中西方艺术史名作碎片。</p>
+      <p><b>AI互动装置</b>：《年轻人，你去哪？》借助AI技术将现场观众形象即时转化为艺术形象并投影到画作中。</p>
+      <img class="work-img" src="cafa_imgs/wu_land.jpg" alt="吴嘉丽《否定再否定：土地的挽留》">
+      <img class="work-img" src="cafa_imgs/wu_youngman.jpg" alt="吴嘉丽《年轻人，你去哪？》">
+      <img class="work-img" src="cafa_imgs/wu_interact1.jpg" alt="观众与作品互动现场">
+    </div>
+  </div>
+
+  <div class="work-card tier-1">
+    <div class="work-banner">
+      <div class="work-rank">T1</div>
+      <div class="work-title-area">
+        <div class="work-name">《龙》《凤凰》 <span class="author">杨逸凡 · 建筑学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-blue">蓝晒技法</span>
+          <span class="tag tag-red">官方报道</span>
+        </div>
+      </div>
+      <div class="work-heat">话题 TOP 2</div>
+    </div>
+    <div class="work-body">
+      <p>棉浆纸裱于木板 · 铁氰化钾、柠檬酸铁铵、彩墨、色粉 · 100×240cm × 2幅</p>
+      <div class="section-label">作品解读</div>
+      <p>以蓝晒（Cyanotype）技法在棉浆纸上结合药液与色粉，钢笔绘制图纸，以建筑蓝图形式呈现龙与凤凰两个中华传统文化意象。</p>
+      <img class="work-img" src="cafa_imgs/09_long.jpg" alt="杨逸凡《龙》">
+      <img class="work-img" src="cafa_imgs/09_fenghuang.jpg" alt="杨逸凡《凤凰》">
+    </div>
+  </div>
+
+  <div class="work-card tier-1">
+    <div class="work-banner">
+      <div class="work-rank">T1</div>
+      <div class="work-title-area">
+        <div class="work-name">《画室里的风帆》 <span class="author">油画系</span></div>
+        <div class="work-tags">
+          <span class="tag tag-red">刮刀厚涂</span>
+          <span class="tag tag-orange">本科展热门</span>
+        </div>
+      </div>
+      <div class="work-heat">高热度</div>
+    </div>
+    <div class="work-body">
+      <p>布面油画 · 刮刀厚涂</p>
+      <div class="section-label">作品解读</div>
+      <p>以刮刀厚涂技法对画室内的日常杂物进行几何重构，被观众列为"本科展四大夯作品"之一。</p>
+      <img class="work-img" src="cafa_imgs/xhs_sailing.jpg" alt="《画室里的风帆》刮刀厚涂作品">
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">《游园惊梦》 <span class="author">城市设计学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-red">互动装置</span>
+          <span class="tag tag-green">童年记忆</span>
+        </div>
+      </div>
+      <div class="work-heat">高讨论度</div>
+    </div>
+    <div class="work-body">
+      <p>互动装置 · 城市设计学院一层展厅</p>
+      <div class="section-label">作品解读</div>
+      <p>融合观众留言展现童年记忆与陪伴感。配合旧物件唤起观者童年中"人与人之间真实的陪伴感"。</p>
+      <img class="work-img" src="cafa_imgs/xhs_interactive.jpg" alt="《游园惊梦》互动装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">互动装置群 <span class="author">城市设计学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-orange">体感交互</span>
+          <span class="tag tag-green">趣味体验</span>
+        </div>
+      </div>
+      <div class="work-heat">高互动</div>
+    </div>
+    <div class="work-body">
+      <p>城市设计学院一层互动展区集中展示</p>
+      <div class="section-label">展项一览</div>
+      <p><b>击鼓舞狮</b>：体感交互，观众通过肢体动作与虚拟舞狮互动。</p>
+      <p><b>数字化《五牛图》盖章</b>：传统名画的数字互动体验。</p>
+      <p><b>跳舞的唐代陶俑</b>：历史文物与动态交互结合。</p>
+      <p><b>李白售酒装置</b>：与李白"售酒"交互，打印融合诗句的小票。</p>
+      <p><b>捞金鱼</b>：怀旧游戏数字化。</p>
+      <img class="work-img" src="cafa_imgs/xhs_drums.jpg" alt="击鼓舞狮互动装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">《关于承认的游戏》 <span class="author">未知</span></div>
+        <div class="work-tags">
+          <span class="tag tag-blue">互动装置</span>
+          <span class="tag tag-orange">小红书热议</span>
+        </div>
+      </div>
+      <div class="work-heat">热议中</div>
+    </div>
+    <div class="work-body">
+      <div class="section-label">作品解读</div>
+      <p>本科展互动装置作品，引发观众关于"承认"与"被看见"的心理讨论。小红书帖子获75+点赞。</p>
+      <img class="work-img" src="cafa_imgs/xhs_game.jpg" alt="《关于承认的游戏》互动装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">800小人拼成的人生商场 <span class="author">未知</span></div>
+        <div class="work-tags">
+          <span class="tag tag-orange">装置艺术</span>
+          <span class="tag tag-red">小红书热议</span>
+        </div>
+      </div>
+      <div class="work-heat">777赞</div>
+    </div>
+    <div class="work-body">
+      <div class="section-label">作品解读</div>
+      <p>用800个小泥人拼成一座人生商场装置，每个小人代表不同身份与状态。"他用800个小人拼成一座人生商场"帖子获777+点赞。与研究生展《熙攘未央》有异曲同工之妙。</p>
+      <img class="work-img" src="cafa_imgs/xhs_800people.jpg" alt="800小人拼成的人生商场装置艺术">
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《体面》 <span class="author">实验艺术与科技艺术学院</span></div>
+        <div class="work-tags"><span class="tag tag-blue">互动装置</span></div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>观众亲身参与的互动体验装置。覆盖现场表演、实时交互等多元形式。</p>
+      <img class="work-img" src="cafa_imgs/xhs_interactive.jpg" alt="《体面》互动装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《临界》 <span class="author">杨柏滢</span></div>
+        <div class="work-tags"><span class="tag tag-blue">装置艺术</span></div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>以"临界"为主题探讨个体在边界状态下的存在体验，运用多种媒介材料营造沉浸式空间感知。</p>
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《黄粱一梦20年》 <span class="author">未知</span></div>
+        <div class="work-tags"><span class="tag tag-orange">小红书热议</span></div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>标题化用"黄粱一梦"典故，引发观众关于时间、记忆与现实的讨论。</p>
+      <img class="work-img" src="cafa_imgs/xhs_huangliang.jpg" alt="《黄粱一梦20年》作品">
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">最催泪作品（一别竟是永别） <span class="author">未知</span></div>
+        <div class="work-tags"><span class="tag tag-red">催泪</span><span class="tag tag-green">情感</span></div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>被观众评为"央美毕业展最催泪作品"，小红书"一别竟是永别"帖子获126+赞。以离别与永别为主题，触动观众情感共鸣。</p>
+      <img class="work-img" src="cafa_imgs/xhs_farewell.jpg" alt="最催泪作品（一别竟是永别）">
+    </div>
+  </div>
+
+  <!-- 新京报报道作品 -->
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">《棋引境迁》 <span class="author">交互装置</span></div>
+        <div class="work-tags">
+          <span class="tag tag-red">交互装置</span>
+          <span class="tag tag-blue">数字化创作</span>
+          <span class="tag tag-orange">新京报报道</span>
+        </div>
+      </div>
+      <div class="work-heat">热门互动</div>
+    </div>
+    <div class="work-body">
+      <p>交互装置 · 新京报图说报道</p>
+      <div class="section-label">作品解读</div>
+      <p>以古画《重屏会棋图》的空间意境进行数字化创作。观者入座与画中人对弈，画面实时定格身影，形成画中画循环视觉，将人影层层叠入数字屏境，并留存过往体验者影像，实现古今交错的沉浸式体验。</p>
+      <img class="work-img" src="cafa_imgs/bjnews_qi_yin_jing_qian.jpg" alt="《棋引境迁》交互装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">《律动光巢》 <span class="author">城市设计学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-green">光影装置</span>
+          <span class="tag tag-blue">传统造物</span>
+        </div>
+      </div>
+      <div class="work-heat">视觉亮点</div>
+    </div>
+    <div class="work-body">
+      <p>城市设计学院传统造物设计研究工作室毕业生作品 · 新京报图说报道</p>
+      <div class="section-label">作品解读</div>
+      <p>以光影为媒介创作的沉浸式空间装置，通过光线与结构的交互营造出"光之巢"的视觉意象，探索传统造物在当代科技语境下的新生。</p>
+      <img class="work-img" src="cafa_imgs/bjnews_lv_dong_guang_chao.jpg" alt="《律动光巢》光影装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">《灯拾梦华》 <span class="author">非遗装置</span></div>
+        <div class="work-tags">
+          <span class="tag tag-red">非遗</span>
+          <span class="tag tag-green">互动装置</span>
+        </div>
+      </div>
+      <div class="work-heat">文化传承</div>
+    </div>
+    <div class="work-body">
+      <p>非遗滚灯艺术装置 · 新京报图说报道</p>
+      <div class="section-label">作品解读</div>
+      <p>以中国传统非遗滚灯技艺为核心，结合现代光影艺术打造的沉浸式互动装置。观众可近距离感受滚灯艺术的视觉魅力，在光影流转中体验传统技艺与当代审美的碰撞。</p>
+      <img class="work-img" src="cafa_imgs/bjnews_deng_shi_meng_hua.jpg" alt="《灯拾梦华》非遗滚灯装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">《欲语泪先流》 <span class="author">情感装置</span></div>
+        <div class="work-tags">
+          <span class="tag tag-red">情感</span>
+          <span class="tag tag-orange">互动装置</span>
+        </div>
+      </div>
+      <div class="work-heat">催泪之作</div>
+    </div>
+    <div class="work-body">
+      <p>声音互动装置 · 新京报图说报道</p>
+      <div class="section-label">作品解读</div>
+      <p>充满温情的情感互动装置。观众贴着墙壁聆听着"家的声音"，通过声音装置触发对家庭、亲情的记忆与感怀。作品以含蓄而深沉的方式，让每位参与者与内心最柔软的部分对话。</p>
+      <img class="work-img" src="cafa_imgs/bjnews_yu_yu_lei_xian_liu.jpg" alt="《欲语泪先流》情感装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-2">
+    <div class="work-banner">
+      <div class="work-rank">T2</div>
+      <div class="work-title-area">
+        <div class="work-name">《四时行焉》 <span class="author">踏步光影互动</span></div>
+        <div class="work-tags">
+          <span class="tag tag-blue">互动装置</span>
+          <span class="tag tag-green">二十四节气</span>
+        </div>
+      </div>
+      <div class="work-heat">热门体验</div>
+    </div>
+    <div class="work-body">
+      <p>二十四节气踏步光影互动艺术装置 · 新京报图说报道</p>
+      <div class="section-label">作品解读</div>
+      <p>以中国二十四节气为创作主题的踏步式光影互动装置。观众通过踩踏触发不同节气的光影变化与音效，在身体参与中感受时序流转的自然韵律，将传统文化转化为可感知的身体体验。</p>
+      <img class="work-img" src="cafa_imgs/bjnews_si_shi_xing_yan.jpg" alt="《四时行焉》二十四节气光影装置">
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《梨的房间》 <span class="author">装置艺术</span></div>
+        <div class="work-tags">
+          <span class="tag tag-orange">装置艺术</span>
+          <span class="tag tag-blue">材料探索</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>木板、镜子、布 · 综合材料装置 · 新京报图说报道</p>
+      <div class="section-label">作品解读</div>
+      <p>由木板、镜子和布制作的装置作品，通过日常材料的重组构建出一个名为"梨"的私密空间。镜面反射扩展了有限空间的视觉维度，布料的柔软与木板的硬朗形成材质对话，邀请观众进入一场关于空间、记忆与感知的沉思。</p>
+      <img class="work-img" src="cafa_imgs/bjnews_li_de_fang_jian.jpg" alt="《梨的房间》装置艺术">
+    </div>
+  </div>
+
+  <!-- 实验艺术与科技艺术学院作品 -->
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《串线Crosswired》 <span class="author">杜道通 · 实验艺术与科技艺术学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-blue">绘画装置</span>
+          <span class="tag tag-orange">跨媒体</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>绘画装置 · 524×427×160cm</p>
+      <div class="section-label">作品解读</div>
+      <p>将古画、神话、动漫、AI图像交织重构，通过图像的借体与叙事断裂探讨当代视觉文化中的"串线"现象。作品以大规模的装置体量构建出一个图像迷宫，观众穿行其中感受不同时空、不同媒介图像的碰撞与重组。</p>
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《半自动艺术压制机》 / 《什么使我们的今天变得如此相同》 <span class="author">艾格格 · 实验艺术与科技艺术学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-red">互动装置</span>
+          <span class="tag tag-blue">社会批判</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>机械设备、红砖、试卷等综合材料</p>
+      <div class="section-label">作品解读</div>
+      <p>一台可以批量化生产"艺术品"的半自动压制机。作者将试卷、废纸等日常材料压制成砖块形态，以机械化的生产方式反思当代艺术的同质化问题。作品以黑色幽默的方式叩问：当艺术可以被机器批量制造，"什么使我们的今天变得如此相同"？</p>
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《慢慢》 <span class="author">彭妍 · 实验艺术与科技艺术学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-green">综合材料</span>
+          <span class="tag tag-red">情感</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>综合材料 · 150×200cm</p>
+      <div class="section-label">作品解读</div>
+      <p>作品描绘一位母亲怀抱襁褓中的婴儿。作者将象征精致浪漫的小花小草（部分由母亲手绘）撕碎、燃烧再拼贴重构。宣纸层层叠加，晕染、渗透、褶皱如同岁月的积淀。人物轮廓以粗重线条勾勒，母亲背上的既是枷锁也是盔甲——柔软如初，却又坚不可摧。</p>
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《合同到期 全场清货》 <span class="author">黄思颖 · 实验艺术与科技艺术学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-blue">VR装置</span>
+          <span class="tag tag-orange">沉浸式</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>VR虚拟现实互动装置</p>
+      <div class="section-label">作品解读</div>
+      <p>再现老式商场清仓甩卖场景，观众戴上VR设备后"梦游"空荡的老式商场，需要完成四个关卡，但通关后发现又回到第一个关卡——如同莫比乌斯环般循环往复。作品以游戏化的互动方式探讨时间、空间与消费记忆的关系。</p>
+    </div>
+  </div>
+
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《瀑布》 <span class="author">刘书言 · 实验艺术与科技艺术学院</span></div>
+        <div class="work-tags">
+          <span class="tag tag-green">互动装置</span>
+          <span class="tag tag-blue">观众参与</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>传送带、蜡笔 · 互动共创装置</p>
+      <div class="section-label">作品解读</div>
+      <p>以传送带与蜡笔为媒介的互动装置，邀请观众在传送带上涂鸦共创。随着传送带缓缓移动，作品随时间不断流动变化，每位参与者的笔触都成为作品的一部分。作者以此探讨创作权的让渡与集体艺术的可能性。</p>
+    </div>
+  </div>
+
+  <!-- 戏城 -->
+  <div class="work-card tier-3">
+    <div class="work-banner">
+      <div class="work-rank">T3</div>
+      <div class="work-title-area">
+        <div class="work-name">《戏城》 <span class="author">婪 · 油画系</span></div>
+        <div class="work-tags"><span class="tag tag-blue">城市题材</span><span class="tag tag-green">油画</span></div>
+      </div>
+    </div>
+    <div class="work-body">
+      <p>布面油画 · 以香港城市风貌为主题</p>
+      <div class="section-label">作品解读</div>
+      <p>以香港城市景观为创作题材，用油画的笔触与色彩语言描绘城市的活力与层次。作者在帖文中称"我画中的香港"，从个人视角出发展现对这座城市的理解与情感连接。</p>
+    </div>
+  </div>
+
+  <!-- 全部帖子列表 -->
+  <div class="section-title" id="posts">小红书帖子汇总 <span class="badge" id="post-count"></span></div>
+  <div class="update-bar">实时数据：2026.05.23 更新 · 仅含本科展（一）展期内帖子（5.20起）· 点击标题可跳转</div>
+  <div class="post-list" id="post-list"></div>
+
+  <!-- 现场照片墙 -->
+  <div class="section-title" id="photowall">现场照片墙 <span class="badge" id="pw-count"></span></div>
+  <div class="update-bar">小红书各帖子中收录的本科展现场照片 · 点击图片跳转查看详情</div>
+  <div class="photo-wall-grid" id="photo-wall-grid"></div>
+
+  <!-- 攻略 -->
+  <div class="section-title" id="guide">观展攻略速览</div>
+  <div class="info-card">
+    <table>
+      <tr><td>交通</td><td>地铁15号线「阜通站」A1口 / 14号线「望京南站」</td></tr>
+      <tr><td>导航</td><td>搜索「中央美术学院北门」· 校内无社会停车</td></tr>
+      <tr><td>建议</td><td>预留3-4小时 · 上午人少体验更佳</td></tr>
+      <tr><td>用餐</td><td>学校食堂对外开放（19号楼三食堂）· 支持微信支付宝</td></tr>
+      <tr><td>须知</td><td>禁带饮料食物 · 禁闪光灯 · 门口有存包柜</td></tr>
+      <tr><td>市集</td><td>学生原创市集 · 周边5~3000不等</td></tr>
+      <tr><td>出片</td><td>蔷薇花墙 · 美术馆四楼俯拍中庭 · 斜坡</td></tr>
+      <tr><td>路线</td><td>北门→美术馆1-4层→室外展区→5号楼→7号楼</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    数据来源：<a href="https://www.xiaohongshu.com" target="_blank">小红书</a> · 浏览器实时抓取 · 5月23日更新<br>
+    <span style="color:#bbb">仅含本科展（一）确认作品 · 部分链接需登录后访问</span>
+  </div>
+</div>
+
+<script>
+const posts = [
+  { id:'6a0fc5000000000036033014', title:'央美本科毕业展', author:'小艺的展览日常', likes:6298, time:'5月23日', hot:true, desc:'本科毕业展现场实拍，热度飙升中' },
+  { id:'6a0cdca500000000380226cc', title:'也许央美的危机才真正开始', author:'老爷一更了', likes:5370, time:'5月22日', hot:true, desc:'对央美毕业展现状的批判性思考，讨论热度极高' },
+  { id:'6a0dce3d0000000035032ddc', title:'央美毕业展！超级显眼包到底是谁？', author:'充哥崛起', likes:4770, time:'5月22日', hot:true, desc:'盘点央美毕业展中最社牛的显眼包作品' },
+  { id:'6a0ef8a1000000003601cc5e', title:'钝评一下央美本科毕业展', author:'Katrina_', likes:2428, time:'5月23日', hot:true, desc:'对央美本科毕业展的犀利点评与分析，热度持续上升' },
+  { id:'6a101ff10000000035025013', title:'摄影发明了180年，超写实手绘也无可替代', author:'美院安迪看艺术', likes:16000, time:'5月22日', hot:true, desc:'超写实手绘作品赏析，引发"摄影时代手绘价值"讨论' },
+  { id:'6a0d0e780000000035023f16', title:'2026央美毕业展写实天花板', author:'自闭阿毛', likes:7176, time:'5月21日', hot:true, desc:'展示央美毕业展最高写实水平的作品集锦' },
+  { id:'6a0189170000000007026813', title:'毕业展丨比漫画还夸张的雕塑是怎么创作的？', author:'美院安迪看艺术', likes:3225, time:'5月22日', hot:true, desc:'本科展雕塑系超现实作品的创作过程揭秘' },
+  { id:'6a0d71af0000000007021d68', title:'【剧透】央美毕业展本科比研究生好？', author:'美院安迪看艺术', likes:1463, time:'5月21日', hot:true, desc:'对比本科生与研究生毕业展作品质量' },
+  { id:'6a0da35a0000000035038e02', title:'今年央美毕业展最社牛的作品！原来是这样……', author:'麦香鱼园园（探店看展版）', likes:1134, time:'5月21日', hot:true, desc:'揭秘互动性最强的社牛作品' },
+  { id:'6a0dbdd3000000003503105a', title:'央美毕业展他用800个小人拼成一座人生商场', author:'（未知）', likes:777, time:'5月22日', hot:false, desc:'本科展800个小泥人拼成的人生商场装置作品' },
+  { id:'69fadf6900000000360003c5', title:'你见过用真金做的壁画吗？央美学生这画绝了', author:'摄影范儿', likes:536, time:'5月21日', hot:false, desc:'本科展中用真金创作的壁画作品报道' },
+  { id:'6a0d74b30000000007027af1', title:'提前探馆！央美本科毕业展，大胆到超出想象！', author:'摄影范儿', likes:371, time:'5月21日', hot:false, desc:'本科毕业展开展前探馆抢先看' },
+  { id:'6a0b02500000000007026beb', title:'央美作品争议不断 抄袭乱象何时整治❓', author:'（未知）', likes:315, time:'5月22日', hot:false, desc:'对本科展作品争议与抄袭话题的讨论' },
+  { id:'69f8725100000000230066b1', title:'为了直面心中阴影，他手搓了7000个自己…', author:'小北limilk', likes:250, time:'5月20日', hot:false, desc:'本科展一件复刻式雕塑作品的背后故事' },
+  { id:'6a049a2000000000350336a4', title:'央美2026本科生毕业展5月20日开始，别错过', author:'铠甲大哥', likes:217, time:'5月22日', hot:false, desc:'本科毕业展开展提醒与基本信息' },
+  { id:'6a0f4a34000000000702068f', title:'其实我还是第一次去美院毕业展', author:'（未知）', likes:158, time:'5月22日', hot:false, desc:'第一次看美院毕业展的初体验分享' },
+  { id:'6a0d1a9b00000000070226f7', title:'央美毕业展🔥1㎡小摊狂卖17万的人间清醒', author:'（未知）', likes:153, time:'5月22日', hot:false, desc:'毕业生市集火爆销售现象讨论' },
+  { id:'6a0f32fb00000000360021e4', title:'央美毕业展本科展攻略食堂市集', author:'快乐乖乖', likes:149, time:'5月22日', hot:false, desc:'攻略：食堂推荐与市集信息' },
+  { id:'6a0fd1310000000035025d6c', title:'听说央美毕业展书法学院被霸凌了', author:'老刘学书法', likes:138, time:'5月22日', hot:false, desc:'书法学院展区的争议与讨论' },
+  { id:'6a0e5015000000003502219b', title:'央美毕业展！最催泪作品！一别竟是永别！', author:'（未知）', likes:126, time:'5月22日', hot:false, desc:'以离别与永别为主题的本科展催泪作品' },
+  { id:'6a0e84a90000000006036848', title:'2026央美毕业展已严肃观看', author:'OvO', likes:125, time:'5月22日', hot:false, desc:'严肃认真的观展记录' },
+  { id:'6a10566600000000070207a5', title:'黄粱一梦20年 2026央美毕业展作品', author:'小北limilk', likes:107, time:'5月23日', hot:false, desc:'本科展作品"黄粱一梦20年"引发讨论' },
+  { id:'6a0d5c570000000035029abd', title:'央美毕业展【本科阶段】速看附详细攻略', author:'麦香鱼园园（探店看展版）', likes:98, time:'5月21日', hot:false, desc:'本科毕业展速看攻略' },
+  { id:'6a103ae700000000070291c6', title:'有人夸极致浪漫，有人说廉价AI塑料感', author:'（未知）', likes:85, time:'5月23日', hot:false, desc:'本科展某件AI相关作品引发的两极评价讨论' },
+  { id:'6a101c6e000000003601f613', title:'央美毕业创作《关于承认的游戏》', author:'（未知）', likes:75, time:'5月22日', hot:false, desc:'本科展互动装置《关于承认的游戏》作品介绍' },
+  { id:'6a104b20000000003601dc90', title:'央美逛展：本科生毕业展最叛逆作品', author:'（未知）', likes:75, time:'5月22日', hot:false, desc:'本科展中最具反叛精神的作品盘点' },
+  { id:'6a103fa00000000008002d71', title:'央美毕业展最梦核怪诞的作品。。竟是只眼睛！', author:'想吃披萨汉堡和好多肉', likes:73, time:'5月23日', hot:false, desc:'本科展中风格怪诞的"眼睛"主题作品' },
+  { id:'6a0f3531000000003501def4', title:'央美毕业展｜泡泡玛特继承者横空出世！', author:'（未知）', likes:70, time:'5月22日', hot:false, desc:'本科展中潮玩风格作品的出圈讨论' },
+  { id:'6a040d6e0000000036030405', title:'2026央美毕业展佳作大盘点', author:'老古画画', likes:63, time:'5月22日', hot:false, desc:'优秀作品集中盘点' },
+  { id:'6a0d4db2000000003601b081', title:'2026央美本科生毕业展（午休牛马版）', author:'成为波伏娃', likes:53, time:'5月21日', hot:false, desc:'打工人视角的观展记录' },
+  { id:'6a0d839700000000350216b0', title:'2026央美本科毕业展 part2', author:'一月的黑猫不敢航海', likes:46, time:'5月22日', hot:false, desc:'本科毕业展现场作品拍摄合集' },
+  { id:'6a0dc6e9000000003701ce00', title:'2026央美毕业季本科生第一批次毕业展', author:'老古画画', likes:45, time:'5月22日', hot:false, desc:'本科第一批次毕业展现场实拍' },
+  { id:'6a0d7701000000000800211e', title:'2026-央美本科生毕业展/一阶段-绘画类-A', author:'Barbed', likes:39, time:'5月21日', hot:false, desc:'本科展一阶段绘画类作品合集' },
+  { id:'6a0d2cde000000003503395f', title:'央美毕业展｜欢迎大家来看我的作品', author:'努力画的潇', likes:29, time:'5月21日', hot:false, desc:'毕业生本人在小红书发帖邀请参观' },
+  { id:'6a0e89fc0000000007020e23', title:'这是本科毕业展？我不太信—央美这届有点东西', author:'央美 程宇', likes:29, time:'5月22日', hot:false, desc:'本届本科生作品质量令人惊叹' },
+  { id:'6a1046bb0000000035024248', title:'3分钟带你速看26央美毕业展！（本科一阶段）', author:'麦香鱼园园（探店看展版）', likes:26, time:'5月22日', hot:false, desc:'本科一阶段短视频速览' },
+  { id:'6a1014f10000000035024944', title:'央美本科毕业展偶遇晚晚', author:'丸子泥', likes:26, time:'5月22日', hot:false, desc:'在毕业展现场偶遇名人晚晚' },
+  { id:'6a0d5be600000000370360a8', title:'2026央美本科生毕业展（午休牛马版）（续）', author:'成为波伏娃', likes:26, time:'5月21日', hot:false, desc:'打工人视角的观展记录续篇' },
+  { id:'6a0e9b23000000003501ff68', title:'央美毕业展，本科生的作品太精彩了！', author:'（未知）', likes:25, time:'5月22日', hot:false, desc:'本科毕业展精彩作品展示' },
+  { id:'6a105b090000000036032148', title:'精神洗头房、艺术点钞机…央美毕业展的反叛', author:'野校长', likes:24, time:'5月22日', hot:false, desc:'对本科展中"反叛"元素的辛辣盘点' },
+  { id:'6a0d9f500000000035020147', title:'520去赴一场焕彩之约！央美毕业生展全攻略', author:'晏清Pureness', likes:23, time:'5月21日', hot:false, desc:'520当天去看央美毕业展的全攻略' },
+  { id:'6a106ae1000000003701ee41', title:'有人夸极致浪漫，有人说廉价AI塑料感', author:'（未知）', likes:13, time:'5月23日', hot:false, desc:'对本科展某作品的极致浪漫vs廉价AI两极评价' },
+  { id:'6a0e971f0000000007025298', title:'焕彩共生2026本科展阶抢先看', author:'有多远走多远', likes:10, time:'5月22日', hot:false, desc:'2026本科展提前预览' },
+  { id:'6a10131600000000070134e1', title:'央美毕业展作品被人砍了', author:'欣泽brow', likes:7, time:'5月22日', hot:false, desc:'一件作品被破坏的突发事件' },
+  { id:'6a10a62a000000003700c600', title:'央美毕业展蕞好玩的互动装置艺术作品大合集', author:'野校长', likes:4, time:'5月23日', hot:false, desc:'本科展互动装置作品合集' },
+  { id:'6a1093f80000000035038627', title:'央美本科展大家都看了吗！！！', author:'（未知）', likes:4, time:'5月23日', hot:false, desc:'本科毕业展打卡互动帖' },
+  { id:'6a104bdc00000000080310fb', title:'央美毕业展来了！', author:'Panda', likes:8, time:'5月23日', hot:false, desc:'毕业展打卡分享' },
+  { id:'6a0da2fe0000000035028e9b', title:'2026央美本科生毕业展', author:'Ginshell', likes:4, time:'5月21日', hot:false, desc:'本科毕业展现场拍摄记录' },
+  { id:'6a0d8d1c000000003700ce58', title:'我的毕业展位', author:'SHL', likes:248, time:'5月21日', hot:false, desc:'毕业生展示自己的作品展位现场' },
+  { id:'6a0d627d0000000035031b66', title:'央美本科油画 耐看值max的一件！', author:'暗物质水仙', likes:32, time:'5月21日', hot:false, desc:'本科展最耐看的油画作品之一' },
+  { id:'6a0e80dd000000003502ddf5', title:'央美毕业展本科竟然更惊艳？', author:'无敌央美情报员', likes:21, time:'5月22日', hot:false, desc:'本科毕业展令人惊喜的作品' },
+  { id:'6a0ed63500000000360021a6', title:'央美2026毕业展本科生篇，青春创造力大爆发✨', author:'李李莎311', likes:35, time:'5月22日', hot:false, desc:'本科毕业展精彩作品合集' },
+  { id:'6a0ec57900000000360335de', title:'央美毕业展|一定要来打卡的夯中夯作品！', author:'卿年玖玖', likes:8, time:'5月22日', hot:false, desc:'本科展热门作品打卡合集' },
+  { id:'6a0d4c8c000000000702bdad', title:'2026央美本科展阶段一抢先看！！！🔥🔥🔥', author:'猜猜是我呀', likes:34, time:'5月21日', hot:false, desc:'本科展第一阶段作品抢先预览' },
+  { id:'6a0d1eac000000003701e76b', title:'中央美院26届本科生毕业展今天开始了', author:'游马', likes:28, time:'5月21日', hot:false, desc:'本科毕业展开幕日现场记录' },
+  { id:'6a0f04dd0000000008003023', title:'第二次打卡央美毕业展，依然夯！', author:'你好ccc', likes:8, time:'5月22日', hot:false, desc:'第二次观展，依然被作品震撼' },
+  { id:'6a0dccdb000000003700cdc4', title:'央美毕创《戏城》我画中的香港', author:'婪', likes:31, time:'5月22日', hot:false, desc:'以香港为主题的城市题材油画创作' },
+  { id:'6a1043b4000000003502d2fa', title:'2026央美本科生毕业展Plog+捞人！！', author:'石景山莫文蔚', likes:7, time:'5月22日', hot:false, desc:'本科毕业展图片记录' },
+  { id:'6a0f1651000000003502f485', title:'在央美，看到跨越时空的对话', author:'小张瞎划拉', likes:4, time:'5月22日', hot:false, desc:'跨越时空的艺术对话感悟' },
+  { id:'6a0d85a3000000003501dae1', title:'央美毕业展', author:'dd', likes:72, time:'5月21日', hot:false, desc:'本科毕业展现场拍摄' },
+  { id:'6a104fff000000003502dcb7', title:'央美毕设再封神⁉️你最喜欢哪一个作品🔥', author:'水木致尚艺术设计考研培训', likes:6, time:'5月22日', hot:false, desc:'央美毕业设计作品集锦' },
+  { id:'6a105238000000000602145f', title:'我问晚晚和林瀚，央美印象最深的作品是哪个', author:'摄影范儿', likes:355, time:'5月22日', hot:false, desc:'晚晚夫妇逛央美毕业展点评最深刻的作品' },
+  { id:'69fe75d4000000003700cd50', title:'2026中央美院毕业季毕业展吐槽油画系', author:'（未知）', likes:767, time:'5月22日', hot:false, desc:'对油画系毕业展作品的吐槽与讨论' },
+  { id:'6a0eed6100000000080312c5', title:'一面墙,把所有人看破防了🟢 经历过才懂…', author:'（未知）', likes:5188, time:'5月22日', hot:true, desc:'本科展一面墙引发强烈情感共鸣' },
+  { id:'6a030ae50000000008026cf3', title:'央美毕业展我的观感：阴郁沉重，没有正能量', author:'（未知）', likes:10000, time:'5月22日', hot:true, desc:'对央美毕业展的批判性观后感，引发热议' },
+  { id:'684467e8000000002300fc1d', title:'央美本科毕业展，为什么油画一工集体躺平？', author:'（未知）', likes:1076, time:'5月21日', hot:false, desc:'对油画系第一工作室毕业作品的讨论' },
+  { id:'69f5e793000000002202bdf1', title:'我猜：今年央美毕业展主题是搞钱', author:'（未知）', likes:582, time:'5月21日', hot:false, desc:'对毕业展商业化现象的幽默观察' },
+  { id:'69f99b1d0000000036001110', title:'在央美毕设展可以摘取鸢尾花一朵', author:'（未知）', likes:103, time:'5月21日', hot:false, desc:'本科展互动体验分享' },
+  { id:'6a0d96b90000000008024ef8', title:'央美毕业展里的一代人困境-个人解读作品', author:'（未知）', likes:20, time:'5月22日', hot:false, desc:'对本科展某件作品的深度解读' },
+  { id:'6a10c0b10000000006033ad8', title:'央美毕业展｜为少年锋芒由衷的感到骄傲🥹', author:'（未知）', likes:6, time:'5月23日', hot:false, desc:'为本科毕业生作品感到骄傲的观展感受' },
+  { id:'6a1035770000000006032bb1', title:'央美本科毕业展，稚嫩却鲜活，脑洞爆棚！', author:'（未知）', likes:5, time:'5月23日', hot:false, desc:'对本科展学生创意的高度评价' },
+  { id:'6a0d731300000000070112e3', title:'央美毕业展-本科生阶段', author:'（未知）', likes:19, time:'5月21日', hot:false, desc:'现场图片记录' },
+  { id:'6a0ef4700000000035029333', title:'2026美院本科毕业展正式开展啦！', author:'（未知）', likes:6, time:'5月22日', hot:false, desc:'现场图片记录' },
+  { id:'69ff58a6000000001b021e7f', title:'2026央美毕业展漫谈', author:'（未知）', likes:16, time:'5月22日', hot:false, desc:'现场图片记录' },
+  { id:'6a0d1625000000000603284f', title:'一场生猛的展：当央美本科生走上毕展舞台', author:'（未知）', likes:28, time:'5月22日', hot:false, desc:'现场图片记录' },
+  { id:'6a0f065f0000000035020468', title:'央美本科展上一些好玩的', author:'（未知）', likes:11, time:'5月22日', hot:false, desc:'现场图片记录' },
+  { id:'682c5515000000002300d7d7', title:'中央美院·本科毕业展终于来了‼️攻略码！', author:'（未知）', likes:686, time:'5月22日', hot:false, desc:'现场图片记录' },
+  { id:'685c03210000000011002037', title:'央美和国美，毕业展现场，落差巨大啊！', author:'（未知）', likes:1499, time:'5月22日', hot:false, desc:'现场图片记录' }
+
+];
+
+// Remove duplicates by keeping highest likes version
+const seen = new Map();
+posts.forEach(p => {
+  if (seen.has(p.id)) {
+    if (p.likes > seen.get(p.id).likes) seen.set(p.id, p);
+  } else seen.set(p.id, p);
+});
+const uniquePosts = [...seen.values()];
+
+function formatNum(n) {
+  if (n >= 10000) return (n/10000).toFixed(1) + '万';
+  return n;
+}
+
+function render() {
+  const container = document.getElementById('post-list');
+  document.getElementById('post-count').textContent = uniquePosts.length;
+  document.getElementById('total-posts').textContent = uniquePosts.length;
+
+  const sorted = [...uniquePosts].sort((a,b) => b.likes - a.likes);
+  const totalLikes = sorted.reduce((s,p) => s + p.likes, 0);
+  document.getElementById('total-likes').textContent = formatNum(totalLikes);
+  document.getElementById('avg-likes').textContent = Math.round(totalLikes / sorted.length);
+  document.getElementById('hot-post').textContent = sorted[0] ? sorted[0].title.substring(0, 12) + '..' : '-';
+
+  sorted.forEach((p, i) => {
+    const c = document.createElement('div'); c.className = 'post-item';
+    const likesDisplay = formatNum(p.likes);
+    const hotBadge = p.hot ? '<span style="color:#ff4757;font-size:11px;font-weight:600;margin-left:4px">HOT</span>' : '';
+
+    // Use a generic thumbnail color based on rank
+    const colors = ['ff2442','ff6b35','ffa940','2f54eb','389e0d','666'];
+    const bgColor = colors[i % colors.length];
+
+    c.innerHTML = `
+      <div class="post-num ${i<3?'top3':''}">${i+1}</div>
+      <div class="post-info">
+        <a class="title" href="https://www.xiaohongshu.com/explore/${p.id}" target="_blank">${p.title}${hotBadge}</a>
+        <div class="meta">
+          <span class="author">${p.author || '未知'}</span>
+          <span class="likes">${likesDisplay}</span>
+          <span>${p.time}</span>
+        </div>
+        <div class="desc">${p.desc || ''}</div>
+        <a class="jump" href="https://www.xiaohongshu.com/explore/${p.id}" target="_blank">打开小红书</a>
+      </div>`;
+    container.appendChild(c);
+  });
+}
+render();
+
+// Photo wall data
+const photowallData = [
+  { id:'6a0d731300000000070112e3', title:'央美毕业展-本科生阶段', author:'（未知）', likes:19, img:'https://sns-webpic-qc.xhscdn.com/202605230952/6c181796b5ccd5239f716623891f76b4/notes_uhdr/1040g3qo320cqgaor5mcg493m7dp0n5aqlomnso8!nc_n_webp_mw_1' },
+  { id:'6a0ef4700000000035029333', title:'2026美院本科毕业展正式开展啦！', author:'（未知）', likes:6, img:'https://sns-webpic-qc.xhscdn.com/202605230952/6a613faf781a010f1dfbd609cba66b3c/spectrum/1040g34o320e9hcf35i104a6dael8jiasodjeu9g!nc_n_webp_mw_1' },
+  { id:'69ff58a6000000001b021e7f', title:'2026央美毕业展漫谈', author:'（未知）', likes:16, img:'https://sns-webpic-qc.xhscdn.com/202605230952/1d8e6cea17bc660d5f9d49abc8ca9575/note_pre_post_uhdr/1040g3r031vv0ogrgia2g5odf8q78d8i5f0105dg!nc_n_webp_mw_1' },
+  { id:'6a0d1625000000000603284f', title:'一场生猛的展：当央美本科生走上毕展舞台', author:'（未知）', likes:28, img:'https://sns-webpic-qc.xhscdn.com/202605230952/60f319491fbd3389fc50b51774019328/notes_uhdr/1040g3qo320cf63icme005q0kvfijieudvuphqlg!nc_n_webp_mw_1' },
+  { id:'6a0f065f0000000035020468', title:'央美本科展上一些好玩的', author:'（未知）', likes:11, img:'https://sns-webpic-qc.xhscdn.com/202605230952/f19f044d60c67691b0c194dacbb15370/notes_pre_post/1040g3k0320ebkdrgle005ngpplcg92ifdc0ldl8!nc_n_webp_mw_1' },
+  { id:'682c5515000000002300d7d7', title:'中央美院·本科毕业展终于来了‼️攻略码！', author:'（未知）', likes:686, img:'https://sns-webpic-qc.xhscdn.com/202605230952/4711b5ad408a93437e7b2c4f659a679d/1040g2sg31hn00ulaja7048h1fqkel5kieo6t8ag!nc_n_webp_mw_1' },
+  { id:'685c03210000000011002037', title:'央美和国美，毕业展现场，落差巨大啊！', author:'（未知）', likes:1499, img:'https://sns-webpic-qc.xhscdn.com/202605230952/1b7e470da865498bba9322d31f7a7ebb/1040g00831j6ogglpia504a390cte090lk3qdfl0!nc_n_webp_mw_1' },
+  { id:'6a0d4c8c000000000702bdad', title:'2026央美本科展阶段一抢先看！！', author:'猜猜是我呀', likes:34, img:'https://sns-webpic-qc.xhscdn.com/202605230952/fa49884a23ee36a29328cc5aac7d0606/1040g2sg320cllvn062e04a1ah5urck30mlf7h80!nc_n_webp_mw_1' },
+  { id:'6a0d74b30000000007027af1', title:'提前探馆！央美本科毕业展，大胆到超出想象！', author:'摄影范儿', likes:371, img:'https://sns-webpic-qc.xhscdn.com/202605230952/4be85088a995eb5f2259d40f3b13fa33/1040g008320cqlivqls005n7ibofln5kufga8g68!nc_n_webp_mw_1' },
+  { id:'6a0e89fc0000000007020e23', title:'这是本科毕业展？我不太信', author:'央美 程宇', likes:29, img:'https://sns-webpic-qc.xhscdn.com/202605230952/918ef132c75c97019db9e1ddc27d1731/1040g008320drrilim8005ofdh8s40ppikpcjfmg!nc_n_webp_mw_1' },
+  { id:'6a1043b4000000003502d2fa', title:'2026央美本科生毕业展Plog+捞人！！', author:'石景山莫文蔚', likes:7, img:'https://sns-webpic-qc.xhscdn.com/202605230952/c4931d5e9f80ba5fb0acb6a251db0ae5/notes_pre_post/1040g3k8320fidjarle8043jkljj7m921t782v00!nc_n_webp_mw_1' },
+  { id:'6a0eed6100000000080312c5', title:'一面墙,把所有人看破防了', author:'（未知）', likes:5188, img:'https://sns-webpic-qc.xhscdn.com/202605230952/67730808ff1dec5277ab0002f30add23/1040g008320ea6voim2004a33lpfksavsur80au0!nc_n_webp_mw_1' },
+  { id:'6a101ff10000000035025013', title:'摄影发明了180年，超写实手绘也无可替代', author:'美院安迪看艺术', likes:16000, img:'https://sns-webpic-qc.xhscdn.com/202605230952/d5cb6d0dfb109eb4e8e9a026cf685993/spectrum/1040g34o320fdl50fli1046bpjt52f6dupi9vgpo!nc_n_webp_mw_1' },
+];
+
+function renderPhotoWall() {
+  const grid = document.getElementById('photo-wall-grid');
+  if (!grid) return;
+  const count = document.getElementById('pw-count');
+  if (count) count.textContent = photowallData.length;
+
+  if (photowallData.length === 0) {
+    grid.innerHTML = '<div class="photo-wall-empty">暂无现场照片</div>';
+    return;
+  }
+
+  photowallData.forEach(p => {
+    const item = document.createElement('a');
+    item.className = 'photo-wall-item';
+    item.href = `https://www.xiaohongshu.com/explore/${p.id}`;
+    item.target = '_blank';
+    const likesDisplay = p.likes >= 10000 ? (p.likes/10000).toFixed(1) + '万' : p.likes;
+    item.innerHTML = `
+      <img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <div class="overlay">
+        <div class="pw-title">${p.title}</div>
+        <div class="pw-meta">
+          <span class="pw-likes">❤ ${likesDisplay}</span>
+          <span>${p.author}</span>
+        </div>
+      </div>`;
+    grid.appendChild(item);
+  });
+}
+renderPhotoWall();
+</script>
+</body>
+</html>
