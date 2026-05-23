@@ -2,11 +2,20 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+
+<meta property="og:title" content="央美本科毕业展 2026 · 小红书热门作品汇总">
+<meta property="og:description" content="2026中央美术学院本科毕业展（一）小红书热门作品解读、观展攻略、现场照片汇总。展期5.20-6.3。">
+<meta property="og:image" content="https://redzhx.github.io/cafa-graduation-exhibition-2026/cafa_imgs/photowall_01.jpg">
+<meta property="og:url" content="https://redzhx.github.io/cafa-graduation-exhibition-2026/cafa2026.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>央美本科毕业展 2026 · 小红书热门作品汇总</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', sans-serif;
     background: #f5f5f5;
@@ -174,6 +183,16 @@
     display: flex; align-items: center; gap: 6px;
   }
   .trend-up { color: #ff2442; font-weight: 600; }
+  .back-top {
+    position: fixed; bottom: 30px; right: 20px; width: 44px; height: 44px;
+    border-radius: 50%; background: #ff2442; color: #fff; border: none; cursor: pointer;
+    font-size: 20px; box-shadow: 0 2px 12px rgba(255,36,66,0.3);
+    display: none; align-items: center; justify-content: center;
+    z-index: 999; transition: transform 0.2s, opacity 0.3s;
+  }
+  .back-top:hover { transform: scale(1.1); }
+  .back-top.show { display: flex; }
+
 
   .footer {
     text-align: center; padding: 32px 16px; font-size: 12px; color: #ccc;
@@ -189,6 +208,26 @@
   .photo-wall-item .overlay .pw-meta { display: flex; gap: 8px; margin-top: 3px; opacity: 0.85; font-size: 11px; }
   .photo-wall-item .overlay .pw-likes { color: #ff4757; font-weight: 600; }
   .photo-wall-empty { grid-column: 1/-1; text-align: center; padding: 40px; color: #ccc; font-size: 14px; background: #fafafa; border-radius: 12px; }
+  
+  .lightbox {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92); z-index: 9999; cursor: pointer;
+    align-items: center; justify-content: center;
+  }
+  .lightbox.show { display: flex; }
+  .lightbox img {
+    max-width: 92vw; max-height: 92vh; border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5); object-fit: contain;
+  }
+  .lightbox .lb-close {
+    position: absolute; top: 20px; right: 20px; color: #fff; font-size: 30px;
+    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; background: rgba(0,0,0,0.3); border-radius: 50%;
+  }
+  .lightbox .lb-counter {
+    position: absolute; bottom: 20px; color: rgba(255,255,255,0.6); font-size: 14px;
+  }
+
   @media (max-width: 600px) { .photo-wall-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
 
 @media (max-width: 600px) {
@@ -273,9 +312,9 @@
       <div class="section-label">作品解读</div>
       <p>以家乡江西万年的稻田为核心意象，画面下方是蓬勃向上的水稻，上方是翱翔的飞鸟，体现故土"无声的挽留"与年轻人"奔赴远方的渴望"之间的情感对抗。借鉴沧源崖画的古朴形式，融入锦灰堆（八破图）手法刻画中西方艺术史名作碎片。</p>
       <p><b>AI互动装置</b>：《年轻人，你去哪？》借助AI技术将现场观众形象即时转化为艺术形象并投影到画作中。</p>
-      <img class="work-img" src="cafa_imgs/wu_land.jpg" alt="吴嘉丽《否定再否定：土地的挽留》">
-      <img class="work-img" src="cafa_imgs/wu_youngman.jpg" alt="吴嘉丽《年轻人，你去哪？》">
-      <img class="work-img" src="cafa_imgs/wu_interact1.jpg" alt="观众与作品互动现场">
+      <img class="work-img" loading="lazy" src="cafa_imgs/wu_land.jpg" alt="吴嘉丽《否定再否定：土地的挽留》">
+      <img class="work-img" loading="lazy" src="cafa_imgs/wu_youngman.jpg" alt="吴嘉丽《年轻人，你去哪？》">
+      <img class="work-img" loading="lazy" src="cafa_imgs/wu_interact1.jpg" alt="观众与作品互动现场">
     </div>
   </div>
 
@@ -295,8 +334,8 @@
       <p>棉浆纸裱于木板 · 铁氰化钾、柠檬酸铁铵、彩墨、色粉 · 100×240cm × 2幅</p>
       <div class="section-label">作品解读</div>
       <p>以蓝晒（Cyanotype）技法在棉浆纸上结合药液与色粉，钢笔绘制图纸，以建筑蓝图形式呈现龙与凤凰两个中华传统文化意象。</p>
-      <img class="work-img" src="cafa_imgs/09_long.jpg" alt="杨逸凡《龙》">
-      <img class="work-img" src="cafa_imgs/09_fenghuang.jpg" alt="杨逸凡《凤凰》">
+      <img class="work-img" loading="lazy" src="cafa_imgs/09_long.jpg" alt="杨逸凡《龙》">
+      <img class="work-img" loading="lazy" src="cafa_imgs/09_fenghuang.jpg" alt="杨逸凡《凤凰》">
     </div>
   </div>
 
@@ -316,7 +355,7 @@
       <p>布面油画 · 刮刀厚涂</p>
       <div class="section-label">作品解读</div>
       <p>以刮刀厚涂技法对画室内的日常杂物进行几何重构，被观众列为"本科展四大夯作品"之一。</p>
-      <img class="work-img" src="cafa_imgs/xhs_sailing.jpg" alt="《画室里的风帆》刮刀厚涂作品">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_sailing.jpg" alt="《画室里的风帆》刮刀厚涂作品">
     </div>
   </div>
 
@@ -337,7 +376,7 @@
       <p>互动装置 · 城市设计学院一层展厅</p>
       <div class="section-label">作品解读</div>
       <p>融合观众留言展现童年记忆与陪伴感。配合旧物件唤起观者童年中"人与人之间真实的陪伴感"。</p>
-      <img class="work-img" src="cafa_imgs/xhs_interactive.jpg" alt="《游园惊梦》互动装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_interactive.jpg" alt="《游园惊梦》互动装置">
     </div>
   </div>
 
@@ -361,7 +400,7 @@
       <p><b>跳舞的唐代陶俑</b>：历史文物与动态交互结合。</p>
       <p><b>李白售酒装置</b>：与李白"售酒"交互，打印融合诗句的小票。</p>
       <p><b>捞金鱼</b>：怀旧游戏数字化。</p>
-      <img class="work-img" src="cafa_imgs/xhs_drums.jpg" alt="击鼓舞狮互动装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_drums.jpg" alt="击鼓舞狮互动装置">
     </div>
   </div>
 
@@ -380,7 +419,7 @@
     <div class="work-body">
       <div class="section-label">作品解读</div>
       <p>本科展互动装置作品，引发观众关于"承认"与"被看见"的心理讨论。小红书帖子获75+点赞。</p>
-      <img class="work-img" src="cafa_imgs/xhs_game.jpg" alt="《关于承认的游戏》互动装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_game.jpg" alt="《关于承认的游戏》互动装置">
     </div>
   </div>
 
@@ -399,7 +438,7 @@
     <div class="work-body">
       <div class="section-label">作品解读</div>
       <p>用800个小泥人拼成一座人生商场装置，每个小人代表不同身份与状态。"他用800个小人拼成一座人生商场"帖子获777+点赞。与研究生展《熙攘未央》有异曲同工之妙。</p>
-      <img class="work-img" src="cafa_imgs/xhs_800people.jpg" alt="800小人拼成的人生商场装置艺术">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_800people.jpg" alt="800小人拼成的人生商场装置艺术">
     </div>
   </div>
 
@@ -414,7 +453,7 @@
     </div>
     <div class="work-body">
       <p>观众亲身参与的互动体验装置。覆盖现场表演、实时交互等多元形式。</p>
-      <img class="work-img" src="cafa_imgs/xhs_interactive.jpg" alt="《体面》互动装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_interactive.jpg" alt="《体面》互动装置">
     </div>
   </div>
 
@@ -441,7 +480,7 @@
     </div>
     <div class="work-body">
       <p>标题化用"黄粱一梦"典故，引发观众关于时间、记忆与现实的讨论。</p>
-      <img class="work-img" src="cafa_imgs/xhs_huangliang.jpg" alt="《黄粱一梦20年》作品">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_huangliang.jpg" alt="《黄粱一梦20年》作品">
     </div>
   </div>
 
@@ -455,7 +494,7 @@
     </div>
     <div class="work-body">
       <p>被观众评为"央美毕业展最催泪作品"，小红书"一别竟是永别"帖子获126+赞。以离别与永别为主题，触动观众情感共鸣。</p>
-      <img class="work-img" src="cafa_imgs/xhs_farewell.jpg" alt="最催泪作品（一别竟是永别）">
+      <img class="work-img" loading="lazy" src="cafa_imgs/xhs_farewell.jpg" alt="最催泪作品（一别竟是永别）">
     </div>
   </div>
 
@@ -477,7 +516,7 @@
       <p>交互装置 · 新京报图说报道</p>
       <div class="section-label">作品解读</div>
       <p>以古画《重屏会棋图》的空间意境进行数字化创作。观者入座与画中人对弈，画面实时定格身影，形成画中画循环视觉，将人影层层叠入数字屏境，并留存过往体验者影像，实现古今交错的沉浸式体验。</p>
-      <img class="work-img" src="cafa_imgs/bjnews_qi_yin_jing_qian.jpg" alt="《棋引境迁》交互装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/bjnews_qi_yin_jing_qian.jpg" alt="《棋引境迁》交互装置">
     </div>
   </div>
 
@@ -497,7 +536,7 @@
       <p>城市设计学院传统造物设计研究工作室毕业生作品 · 新京报图说报道</p>
       <div class="section-label">作品解读</div>
       <p>以光影为媒介创作的沉浸式空间装置，通过光线与结构的交互营造出"光之巢"的视觉意象，探索传统造物在当代科技语境下的新生。</p>
-      <img class="work-img" src="cafa_imgs/bjnews_lv_dong_guang_chao.jpg" alt="《律动光巢》光影装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/bjnews_lv_dong_guang_chao.jpg" alt="《律动光巢》光影装置">
     </div>
   </div>
 
@@ -517,7 +556,7 @@
       <p>非遗滚灯艺术装置 · 新京报图说报道</p>
       <div class="section-label">作品解读</div>
       <p>以中国传统非遗滚灯技艺为核心，结合现代光影艺术打造的沉浸式互动装置。观众可近距离感受滚灯艺术的视觉魅力，在光影流转中体验传统技艺与当代审美的碰撞。</p>
-      <img class="work-img" src="cafa_imgs/bjnews_deng_shi_meng_hua.jpg" alt="《灯拾梦华》非遗滚灯装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/bjnews_deng_shi_meng_hua.jpg" alt="《灯拾梦华》非遗滚灯装置">
     </div>
   </div>
 
@@ -537,7 +576,7 @@
       <p>声音互动装置 · 新京报图说报道</p>
       <div class="section-label">作品解读</div>
       <p>充满温情的情感互动装置。观众贴着墙壁聆听着"家的声音"，通过声音装置触发对家庭、亲情的记忆与感怀。作品以含蓄而深沉的方式，让每位参与者与内心最柔软的部分对话。</p>
-      <img class="work-img" src="cafa_imgs/bjnews_yu_yu_lei_xian_liu.jpg" alt="《欲语泪先流》情感装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/bjnews_yu_yu_lei_xian_liu.jpg" alt="《欲语泪先流》情感装置">
     </div>
   </div>
 
@@ -557,7 +596,7 @@
       <p>二十四节气踏步光影互动艺术装置 · 新京报图说报道</p>
       <div class="section-label">作品解读</div>
       <p>以中国二十四节气为创作主题的踏步式光影互动装置。观众通过踩踏触发不同节气的光影变化与音效，在身体参与中感受时序流转的自然韵律，将传统文化转化为可感知的身体体验。</p>
-      <img class="work-img" src="cafa_imgs/bjnews_si_shi_xing_yan.jpg" alt="《四时行焉》二十四节气光影装置">
+      <img class="work-img" loading="lazy" src="cafa_imgs/bjnews_si_shi_xing_yan.jpg" alt="《四时行焉》二十四节气光影装置">
     </div>
   </div>
 
@@ -576,7 +615,7 @@
       <p>木板、镜子、布 · 综合材料装置 · 新京报图说报道</p>
       <div class="section-label">作品解读</div>
       <p>由木板、镜子和布制作的装置作品，通过日常材料的重组构建出一个名为"梨"的私密空间。镜面反射扩展了有限空间的视觉维度，布料的柔软与木板的硬朗形成材质对话，邀请观众进入一场关于空间、记忆与感知的沉思。</p>
-      <img class="work-img" src="cafa_imgs/bjnews_li_de_fang_jian.jpg" alt="《梨的房间》装置艺术">
+      <img class="work-img" loading="lazy" src="cafa_imgs/bjnews_li_de_fang_jian.jpg" alt="《梨的房间》装置艺术">
     </div>
   </div>
 
@@ -1184,6 +1223,43 @@ function renderGuidePosts() {
 }
 renderGuidePosts();
 
+
+
+// Lightbox
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('show');
+  document.body.style.overflow = '';
+}
+// Click work images to open lightbox
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('work-img')) {
+    e.preventDefault();
+    openLightbox(e.target.src);
+  }
+  // Photo wall images in lightbox too
+  if (e.target.closest('.photo-wall-item') && e.target.tagName === 'IMG') {
+    e.preventDefault();
+    openLightbox(e.target.src);
+  }
+});
+
+// Back to top
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('backTop');
+  if (btn) btn.classList.toggle('show', window.scrollY > 500);
+});
 </script>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close" onclick="closeLightbox()">&#10005;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650;</button>
 </body>
 </html>
